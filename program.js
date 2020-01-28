@@ -31,7 +31,7 @@ function onReject(error) {
   console.log(error.message);
 }
 
-//4) To reject or Not to reject
+//4) To reject or Not to reject in promises.
 let promise = new Promise(function (fulfill, reject) {
   fulfill('I FIRED');
   reject(new Error('I DID NOT FIRE'));
@@ -41,3 +41,12 @@ promise.then(function (successMsg) {
 }, function (error) {
   console.log(error.message);
 });
+
+//5)Always aschronious
+console.log('MAIN PROGRAM');
+let promise = new Promise(function (fulfill, reject) {  
+  fulfill('PROMISE VALUE');
+});
+promise.then(function (successMsg) {
+  console.log(successMsg);
+}, null);
