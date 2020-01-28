@@ -30,3 +30,14 @@ promise.then(function () {
 function onReject(error) {
   console.log(error.message);
 }
+
+//4) To reject or Not to reject
+let promise = new Promise(function (fulfill, reject) {
+  fulfill('I FIRED');
+  reject(new Error('I DID NOT FIRE'));
+});
+promise.then(function (successMsg) {
+  console.log(successMsg);
+}, function (error) {
+  console.log(error.message);
+});
