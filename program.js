@@ -147,3 +147,11 @@ all(getPromise1(), getPromise2()).then(function (response) {
 //12) Fetch JSON
 let HTTP = require("q-io/http");
 HTTP.read('http://localhost:1337').then(response => JSON.parse(response)).then(console.log);
+
+//13) Do Some Work
+let HTTP = require("q-io/http");
+HTTP.read('http://localhost:7000').then((response) => response.toString()).then(response => {
+  HTTP.read(`http://localhost:7001/${response}`)
+    .then(JSON.parse)
+    .then(console.log)
+});
