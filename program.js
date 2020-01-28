@@ -83,3 +83,18 @@ function attachTitle(data) {
 let promise = new Promise(function (resolve, reject) {
   resolve('MANHATTAN')
 }).then(attachTitle).then(console.log);
+
+//9) Thrown and Error
+function parsePromised(json) {
+  return new Promise(function (fulfill, reject) {
+    try {
+      fulfill(JSON.parse(json));
+    } catch (err) {
+      reject(err);
+    }
+  });
+}
+function onReject(error) {
+  console.log(error.message);
+}
+parsePromised(process.argv[2]).then(null, onReject);
