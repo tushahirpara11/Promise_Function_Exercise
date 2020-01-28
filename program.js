@@ -11,6 +11,7 @@ let promise = new Promise(function (fulfill, reject) {
     fulfill("FULFILLED!")
   }, 300);
 });
+
 promise.then(function (msg) {
   console.log(msg);
 });
@@ -27,15 +28,17 @@ promise.then(function () {
 }, function (error) {
   onReject(error);
 });
+
 function onReject(error) {
   console.log(error.message);
 }
 
-//4) To reject or Not to reject in promises.
+//4) To reject or to reject in  promises
 let promise = new Promise(function (fulfill, reject) {
   fulfill('I FIRED');
   reject(new Error('I DID NOT FIRE'));
 });
+
 promise.then(function (successMsg) {
   console.log(successMsg);
 }, function (error) {
@@ -43,10 +46,19 @@ promise.then(function (successMsg) {
 });
 
 //5)Always aschronious
-console.log('MAIN PROGRAM');
-let promise = new Promise(function (fulfill, reject) {  
+let promise = new Promise(function (fulfill, reject) {
   fulfill('PROMISE VALUE');
 });
+
 promise.then(function (successMsg) {
   console.log(successMsg);
 }, null);
+
+console.log('MAIN PROGRAM');
+
+// 6) Shortcuts
+
+let promise = Promise.reject(new Error('SECRET VALUE'));
+promise.catch(function (err) {    
+  console.error(err.message);
+});
